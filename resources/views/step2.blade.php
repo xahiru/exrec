@@ -34,51 +34,42 @@
             </div>
         </div>
         <div id="main">
+            <form action="step3" method="GET" class="form" name="pageForm">
+                        <input type="hidden" id="hiddenValue" name="category" value="none">
+                
             <article>
                 <p class="center">Select movies you've watched (at least 10, more the better). You will be rating them in the next two steps.
                     </p>
-                <form action="step3" method="GET" class="form" name="pageForm">
-                        <input type="hidden" id="hiddenValue" name="category" value="none">
-                </form>
+                
             </article>
-            <div class="row">
-                <div class="col col-4">
-                    <ul class="item-list">
-                        <li><a href="javascript:submitLink('Farms')">{{ $name }}</a><span><input type="checkbox" class="checkbox" id="check1" /></span></li>
-                    </ul>
 
-                <div class="container">
-                    <img src="https://www.themoviedb.org/movie/209112" /> 
-                    
+            @foreach($movies->chunk(3) as $chunk)
+                <div class="row">
+                    @foreach($chunk as $movie)
+                        <div class="col col-4">
+                            <ul class="item-list">
+                                <li><a href="javascript:submitLink('Farms')">{{ $movie->name }}</a>
+                                    <span>
+                                    <input type="checkbox" class="checkbox" name='check_list[]' id='check_list[]' value='{{$movie->id}}'/>
+                                    </span>
+                                    
+                                </li>    
+                            </ul>
+                        </div>
+                    @endforeach
                 </div>
+            @endforeach
+
+        </div>
+            <div class="row">
+
                 <div class="container">
                     <img src="https://api.themoviedb.org/3/movie/209112?api_key=a9adb8765874eecd32c665399885a107209112" />
                     <input type="checkbox"  class="checkbox" id="check2" />
                 </div>
 
-                <div>
-                    
-                </div>
-
-                </div>
-                <div class="col col-4">
-                    <ul class="item-list">
-                        <li><a href="javascript:submitLink('Farms')">Fast Food</a><span>3154 entries</span></li>
-                        
-                        <li><a href="javascript:submitLink('Payroll_Services')">Payroll Services</a><span>19 entries</span></li>
-                    </ul>
-                </div>
-                <div class="col col-4">
-                    <ul class="item-list">
-                        <li><a href="javascript:submitLink('Pediatric_Dentists')">Pediatric Dentists</a><span>158 entries</span></li>
-                        
-                        <li><a href="javascript:submitLink('Zoos')">Zoos</a><span>22 entries</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-            <div class="row">
                 <div class="form-item" >
+                     {{ $movies->links() }}
                     <input action="step3" method="GET" type="submit" id="continue-onward"  class="button red-primary justify-content" value="Next" />
                 </div>
             </div> 
@@ -89,9 +80,8 @@
                 <!-- B VERSION (no image) -->
             </div> 
                
+</form>
 
-
-   
 
 
     </div>
