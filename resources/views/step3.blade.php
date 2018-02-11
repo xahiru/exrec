@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Please provide the website a nickname">
-    <title>Help Me Choose - sign up</title>
+    <title>ExRec - sign up</title>
 
     <link rel="stylesheet" href="css/kube.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -20,7 +20,7 @@ the only important parts are display and width, which force the container to con
         display:inline-block;
         width:auto;
         position:relative;
-        font-size:25px;
+        /*font-size:25px;*/
         border:2px outset #FC0;
         border-radius:5px;
         background-color:navy;
@@ -43,19 +43,19 @@ it floats above the AFTER element.
     }
 /*
 the AFTER:pseudo element. This will represent the total possible  stars available. It is set to relative to ensure it takes up the proper amount of space.
-*/
+*//*
     .stars:AFTER {
         content:"★★★★★";
         position:relative;
         color:#fff;
-    }
+    }*/
 /*
 if including user rating controls, float the AFTER element.
 */
-    .stars.rate:AFTER {
+  /*  .stars.rate:AFTER {
         position:absolute;
         left:0px;
-    }
+    }*/
 /*
 default state for the  user rating controls. invisible, but floating above the BEFORE and AFTER elements
 */
@@ -169,11 +169,11 @@ turn "OFF" all stars after the one the user is hovering over.
             </div>
         </div>
         <div id="main">
-            <form action="step3" method="GET" class="form" name="pageForm">
-                        <input type="hidden" id="hiddenValue" name="category" value="none">
+            <form action="step4a" method="GET" class="form" name="pageForm">
+                        
                 
             <article>
-                <p class="center">Select movies you've watched (at least 10, more the better). You will be rating them in the next two steps.
+                <p class="center">Please rate the following movies.
                     </p>
                 
             </article>
@@ -186,8 +186,9 @@ turn "OFF" all stars after the one the user is hovering over.
                                 <li><a href="javascript:submitLink('Farms')">{{ $movie->name }}</a>
                                 </li>    
                             </ul>
-                            
-                            <div class="stars rate" data-percent="0">
+                             <input type="hidden"  name='{{$movie->id}}' id='{{$movie->id}}' value=''/>
+
+                            <div class="stars rate" data-percent="0" movieid='{{$movie->id}}'>
                                 <a href="?1" onclick="return yes_js_login(event);" title="awful" value='1'>★</a>
                                 <a href="?2" onclick="return yes_js_login(event);" title="ok" value='2'>★</a>
                                 <a href="?3" onclick="return yes_js_login(event);" title="good" value='3'>★</a>
@@ -215,7 +216,10 @@ turn "OFF" all stars after the one the user is hovering over.
                     $pec = ($val/5) * 100;
                     console.log($pec);
                     event.currentTarget.parentElement.setAttribute('data-percent', $pec);
-                    // alert(event.target.parentElement.getAttribute('data-percent'));
+                    $tempid = event.currentTarget.parentElement.getAttribute('movieid');
+                      // document.getElementById($tempid).value = $pec;
+                      document.getElementById($tempid).value = $val;
+                    // alert($tempid);
                     return false;
                 }
              </script>

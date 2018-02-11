@@ -40,7 +40,7 @@
                         <p class="center">Preferred nickname please!</p>
                         <form action="step2" class="form" onsubmit="return validateForm();">
                             <div class="form-item">
-                                <input id="nickname" type="text" placeholder="Enter your nickname..." onfocus="enteringNickname();">
+                                <input id="nickname" name="nickname" type="text" placeholder="Enter your nickname..." onfocus="enteringNickname();">
                                 <label>&nbsp;<span id="nickname-error" class="error hidden">Please enter a nickname</span></label>
                             </div>
                             <div class="form-item">
