@@ -11,5 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.less('bower_components/jquery-bar-rating/themes/fontawesome-stars.less','public/css')
+   .less('bower_components/jquery-bar-rating/themes/bars-pill.less','public/css')
+   .less('bower_components/jquery-bar-rating/themes/css-stars.less','public/css')
+   .less('bower_components/jquery-bar-rating/themes/bars-square.less','public/css')
+   .copy('bower_components/jquery-bar-rating/jquery.barrating.js', 'public/js/jquery.barrating.js');

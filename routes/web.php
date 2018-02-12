@@ -98,7 +98,41 @@ Route::get('/step3', function (Request $request) {
 	// }
 	$new_users_id = DB::table('users')->orderBy('id', 'desc')->first()->id + 1;
 
-    return view('step3',  ['name' => $new_users_id, 'movies' => $movies]);
+    return view('step3a',  ['name' => $new_users_id, 'movies' => $movies]);
+});
+
+Route::get('/step3a', function (Request $request) {
+
+	// $movies = Input::get('check_list',[]);
+	$ids = $request->input('check_list', []);
+
+	$numtitem = ceil(sizeof($ids)*0.2);
+	$offset = sizeof($ids) - $numtitem;
+
+
+	 $array1 = array_slice($ids, $offset , $numtitem);
+	$array2 = array_slice($ids, 0, $offset);	
+	 var_dump($array1);
+	 var_dump($array2);
+	// var_dump($numtitem);
+	// $pieces = array_chunk($ids, ceil(sizeof($ids)*0.2));
+	// var_dump($pieces);
+
+
+	// $movies = Movie::findMany($ids);
+
+	// $movies = Movie::whereIn('id', $array2)->simplePaginate(15);
+	 $movies = Movie::whereIn('id', $ids)->simplePaginate(15);
+
+	 // var_dump($movies);
+	// foreach ($movies as $key => $value) {
+	// 	var_dump($value->name);
+	// }
+	$new_users_id = DB::table('users')->orderBy('id', 'desc')->first()->id + 1;
+
+	 return view('step3a',  ['name' => $new_users_id, 'movies' => $movies]);
+
+
 });
 
 Route::get('/step4a', function (Request $request) {

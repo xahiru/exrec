@@ -4,91 +4,28 @@
 
 <head> 
 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/fontawesome-stars.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="js/jquery.barrating.js"></script>
+    <script type="text/javascript">
+       $(function() {
+          $('#example').barrating({
+            theme: 'fontawesome-stars',
+            onSelect: function(value, text, event) {
+            if (typeof(event) !== 'undefined') {
+              // rating was selected by a user
+              console.log(event.target);
+            } else {
+              // rating was selected programmatically
+              // by calling `set` method
+            }
+          }
+          });
+       });
+    </script>
 
-<script type="text/javascript" src="js/rating.js"></script> 
-
-<script language="javascript" type="text/javascript"> 
-
-$(function() { 
-
-    $("#rating_star").spaceo_rating_widget({ 
-
-        starLength: '5', 
-
-        initialValue: '', 
-
-        callbackFunctionName: 'processRating', 
-
-        imageDirectory: 'img/', 
-
-        inputAttr: 'post_id' 
-
-    }); 
-
-}); 
-
-function processRating(val, attrVal){ 
-
-    $.ajax({ 
-
-        type: 'POST', 
-
-        url: 'rating.php', 
-
-        data: 'post_id=1&points='+val, 
-
-        dataType: 'json', 
-
-        success : function(data) { 
-
-            if (data.status == 'ok') { 
-
-                alert('You have rated '+val+' to SPACE-O'); 
-
-                $('#avgrat').text(data.average_rating); 
-
-                $('#totalrat').text(data.rating_number); 
-
-            }else{ 
-
-                alert('please after some time.'); 
-
-            } 
-
-        } 
-
-    }); 
-
-} 
-
-</script> 
-
-<style type="text/css"> 
-
-    .overall-rating{font-size: 14px;margin-top: 5px;color: #8e8d8d;} 
-    .spaceo_rating_widget{
-    padding: 0px;
-    margin: 0px;
-    float: left;
-}
-.spaceo_rating_widget li{
-    line-height: 0px;
-    width: 28px;
-    height: 28px;
-    padding: 0px;
-    margin: 0px;
-    margin-left: 2px;
-    list-style: none;
-    float: left;
-    cursor: pointer;
-}
-.spaceo_rating_widget li span{
-    display: none;
-}
-
-</style> 
 
 <title>SAPCE-O - Rating Blog</title> 
 
@@ -105,6 +42,18 @@ function processRating(val, attrVal){
         Based on <span id="totalrat"> $ratingRow['rating_number']; </span>  rating)</span></div> 
 
     @endforeach
+
+<div class="br-wrapper br-theme-fontawesome-stars">
+    <select id="example">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+
+</select>
+</div>
+
 
      
 
