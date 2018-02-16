@@ -63,11 +63,7 @@
         </div>
             <div class="row">
 
-                <div class="container">
-                    <img src="https://api.themoviedb.org/3/movie/209112?api_key=a9adb8765874eecd32c665399885a107209112" />
-                    <input type="checkbox"  class="checkbox" id="check2" />
-                </div>
-
+                
                 <div class="form-item" >
                      {{ $movies->links() }}
                     <input action="step3" method="GET" type="submit" id="continue-onward"  class="button red-primary justify-content" value="Next" />

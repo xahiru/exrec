@@ -170,7 +170,8 @@ turn "OFF" all stars after the one the user is hovering over.
         </div>
         <div id="main">
             <form action="step4a" method="GET" class="form" name="pageForm">
-                        
+                    <input type="text" id="selected-text" name="selected-text" style="width:65px;"/>
+
                 
             <article>
                 <p class="center">Please rate the following movies.
@@ -225,6 +226,7 @@ turn "OFF" all stars after the one the user is hovering over.
              </script>
 
             <div class="row">
+
                 <!-- A VERSION -->
                 <img id="credits" src="img/BUPT_logo.png" alt="Made by Beijing University of Posts and Telecommunications" />            
                 <!-- B VERSION (no image) -->
@@ -232,9 +234,8 @@ turn "OFF" all stars after the one the user is hovering over.
                
 </form>
 
-
-
     </div>
+
     <footer id="footer">
         <nav>
             <ul>
