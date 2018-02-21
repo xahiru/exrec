@@ -24,9 +24,15 @@ use Illuminate\Http\Request;
 
 //app loads here step 1
 Route::get('/', 'IndexController@index');
-Route::get('/flush',function (Request $request) {
+Route::get('/logout',function (Request $request) {
 	 $request->session()->flush();
+	 return "logged out";
 });
+
+Route::get('/register','RegistrationController@index');
+
+Route::get('/category','IndexController@category');
+Route::get('/choice','IndexController@choice');
 
 
 
@@ -38,29 +44,10 @@ Route::get('/step2', function (Request $request) {
 */
         
      // This is before loading the step2, username,id, and cookies has to be saved here before loading the second page       
-
         // $users = DB::select('select * from users where active = ?', [1]);
-         $new_users_id = DB::table('users')->orderBy('id', 'desc')->first()->id + 1;
-
-         Session::put('uid', $new_users_id);
-         $nickname = $request->input('nickname');
-         // var_dump($nickname);
-         Session::put('username', $nickname);
-
-         $dataSet[] = [
-         	'id' => $new_users_id,
-			 'name' => $nickname
-    		];
-
-         DB::table('users')->insert($dataSet);
- 
-
-
-
          $movies = Movie::orderBy('id', 'desc')->simplePaginate(30);
-
          var_dump(Session::get('username'));
-    return view('step2', ['name' => $new_users_id, 'movies' => $movies]);
+    return view('step2', ['movies' => $movies]);
 });
 
 Route::get('/step3', function (Request $request) {
@@ -155,21 +142,26 @@ Route::get('/step4', function (Request $request) {
 	$uid = Session::get('uid');
 	$dataSet = [];
 	foreach ($request->all() as $key => $value) {
-		// var_dump($key);
-		// var_dump($value);
+		var_dump($key);
+		var_dump($value);
+
+		$movies_id = substr($key, strlen("selected-text-"));
+		var_dump($movies_id);
 		$dataSet[] = [
 			            'user_id' => $uid,
-			            'movie_id' => $key,
+			            'movie_id' => $movies_id, //$key,
 			            'ratings' => $value,
 			            // 'created_at' => $time
 			        ];
 	}
-	// var_dump($dataSet);
-	 DB::table('ratings')->insert($dataSet);
+	var_dump($dataSet);
 
-	$new_users_id = DB::table('users')->orderBy('id', 'desc')->first()->id + 1;
+	
+	  DB::table('ratings')->insert($dataSet);
+
+	// $new_users_id = DB::table('users')->orderBy('id', 'desc')->first()->id + 1;
 	$movies = Movie::orderBy('id', 'desc')->simplePaginate(15);
-    return view('step4',  ['name' => $new_users_id, 'movies' => $movies]);
+    return view('step4',  ['name' => $uid, 'movies' => $movies]);
 });
 
 Route::get('/survey', function () {

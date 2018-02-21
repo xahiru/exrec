@@ -42,7 +42,7 @@
         </div>
 
         <div id="main">
-            <form action="step4a" method="GET" class="form" name="pageForm">
+            <form action="step4" method="GET" class="form" name="pageForm">
                         
                 
             <article>
@@ -115,7 +115,15 @@
 
         for (var j = 0; j < idList.length; j++) {
             var kid = idList[j].childNodes[1].id;
-            iconSelectItem1 = new IconSelect(kid);
+            iconSelectItem1 = new IconSelect(kid,
+                {'selectedIconWidth':23,
+                'selectedIconHeight':23,
+                'selectedBoxPadding':1,
+                'iconsWidth':48,
+                'iconsHeight':48,
+                'boxIconSpace':1,
+                'vectoralIconNumber':6,
+                'horizontalIconNumber':1});
             iconSelectItem1.refresh(icons);
             obj[kid] = iconSelectItem1;
            
@@ -123,8 +131,7 @@
                 //     console.log("inside change"+ e.target.id);
                     selectedText = document.getElementById('selected-text-'+e.target.id);
                     // selectedText.value = e.target.id;// iconSelectItem1.getSelectedValue();
-
-                    
+   
                     // selectedText.value = iconSelectItem1.getSelectedValue();
                     selectedText.value = obj[e.target.id].getSelectedValue();
                      // console.log(obj[e.target.id].getSelectedValue());
@@ -134,10 +141,6 @@
 
             // console.log(idList[j].childNodes);
             
-           
-            
-
-                
 
             }
 

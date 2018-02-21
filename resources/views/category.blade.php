@@ -25,36 +25,35 @@
                 <nav id="header-nav">
                     <ul>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="{{ url('instructions') }}">Instructions</a></li>
-                        <li><a class="header-button" href="add.html">Add a Movie</a></li>
+                        <li><a href="instructions.html">Instructions</a></li>
+                        <li><a class="header-button" href="add.html">Add a Place</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
         <div id="main">
+            <article>
+                <h1>Time to choose!</h1>
+                <p>Choose an exprimental choice<br />This is where things begin <br />:-D</p>
+            </article>
             <div class="row">
-                <div class="col col-2">&nbsp;</div>
-                <div class="col col-8">
-                    <article id="hero">
-                        <p class="introduction">Welcome to ExRec, Exprimental Recommeder!</p>
-                        <p class="center">Preferred nickname please!</p>
-                        <form action="/register" class="form" onsubmit="return validateForm();">
-                            <div class="form-item">
-                                <input id="nickname" name="nickname" type="text" placeholder="Enter your nickname..." onfocus="enteringNickname();">
-                                <label>&nbsp;<span id="nickname-error" class="error hidden">Please enter a nickname</span></label>
-                            </div>
-                            <div class="form-item">
-                                <input type="submit" id="continue-onward" class="button red-primary" value="Get Started" />
-                            </div>
-                        </form>
-                    </article>
-                </div>
+                <form action="/choice" class="form" onsubmit="return validateForm();">
+                    <input type="radio" name="choice" value="test" checked>Test<br>
+              <!--       <input type="radio" name="choice" value="logout" checked>Log out<br> -->
+                    <input type="radio" name="choice" value="certain">Certain Trust<br>
+                    <input type="radio" name="choice" value="tidal">Tidal Trust<br>
+                    <input type="radio" name="choice" value="star">Tidal Trust<br>
+                    <input type="radio" name="choice" value="emoji">Tidal Trust<br>
+                    <div class="form-item">
+                                <input type="submit" id="continue-onward" class="button red-primary" value="Go" />
+                    </div>
+                </form>
             </div>
             <div class="row">
                 <!-- A VERSION -->
                 <img id="credits" src="img/BUPT_logo.png" alt="Made by Beijing University of Posts and Telecommunications" />            
                 <!-- B VERSION (no image) -->
-            </div>
+            </div>            
         </div>
         <footer id="footer">
             <nav>
