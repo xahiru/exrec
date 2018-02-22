@@ -15,4 +15,6 @@ mix.less('bower_components/jquery-bar-rating/themes/fontawesome-stars.less','pub
    .less('bower_components/jquery-bar-rating/themes/bars-pill.less','public/css')
    .less('bower_components/jquery-bar-rating/themes/css-stars.less','public/css')
    .less('bower_components/jquery-bar-rating/themes/bars-square.less','public/css')
-   .copy('bower_components/jquery-bar-rating/jquery.barrating.js', 'public/js/jquery.barrating.js');
+   // .copy('bower_components/jquery-bar-rating/jquery.barrating.js', 'public/js/jquery.barrating.js');
+   // .copy('node_modules/vis/dist/vis.js', 'public/js/vis.js');
+   .copy('node_modules/vis/dist/vis.css', 'public/css/vis.css');

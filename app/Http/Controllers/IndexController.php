@@ -7,6 +7,8 @@ use App\Movie;
 use Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use App\Friend;
+use App\User;
 
 class IndexController extends Controller
 {
@@ -55,6 +57,18 @@ class IndexController extends Controller
                 break;
             case "tidal":
                 echo "i is tidal";
+                break;
+            case "graph":
+
+              $friends = Friend::all();
+              $ids = User::all();
+              // $friends_id1 = $friends['friend_id1'];
+              // $friends_id2 = Friend::all()->friend_id2();
+
+              
+              // $ids = 1; //funny if its a string it doesnt work in javascript
+              // var_dump($friends);
+                return view('graphtest')->with(['friends' => $friends, 'ids' => $ids]);
                 break;
             case "emoji":
                 return $this->selectMoviesToRate($request);

@@ -42,8 +42,9 @@
               <!--       <input type="radio" name="choice" value="logout" checked>Log out<br> -->
                     <input type="radio" name="choice" value="certain">Certain Trust<br>
                     <input type="radio" name="choice" value="tidal">Tidal Trust<br>
-                    <input type="radio" name="choice" value="star">Tidal Trust<br>
-                    <input type="radio" name="choice" value="emoji">Tidal Trust<br>
+                    <input type="radio" name="choice" value="graph">Graph test<br>
+                    <input type="radio" name="choice" value="star">Star<br>
+                    <input type="radio" name="choice" value="emoji">Emoji<br>
                     <div class="form-item">
                                 <input type="submit" id="continue-onward" class="button red-primary" value="Go" />
                     </div>
