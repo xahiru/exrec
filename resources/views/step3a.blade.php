@@ -43,49 +43,52 @@
 
         <div id="main">
             <form action="step4" method="GET" class="form" name="pageForm">
-                        
-                
+                            
             <article>
-                <p class="center">Please rate the following movies.
-                    </p>
-                
-            </article>
+                <p class="center">Please rate the following movies.</p>
+             </article>
 
             @foreach($movies->chunk(3) as $chunk)
+
                 <div class="row">
                     @foreach($chunk as $movie)
+
                         <div class="col col-4">
                             <ul class="item-list">
                                 <li><a href="javascript:submitLink('Farms')">{{ $movie->name }}</a>
                                 </li>    
                             </ul>
-                            <div class="special-drop"> <div id='{{$movie->id}}'></div></div>
+                            <div class="special-drop"> 
+                                <div id='{{$movie->id}}'></div>
+                            </div>
                             
                             <input class="my-text-select" type="text" id="selected-text-{{$movie->id}}" name="selected-text-{{$movie->id}}" style="width:65px;">
+                           
                         </div>
 
                         @endforeach
                     </div>
             @endforeach
 
-        </div>
 
-                <div class="form-item" >
+        
+                <div class="row">
+                    <div class="form-item" >
                      {{ $movies->links() }}
                     <input action="step3" method="GET" type="submit" id="continue-onward"  class="button red-primary justify-content" value="Next" />
+                    </div>
                 </div>
-            
+                
             
 
-<div class="row">
-                <!-- A VERSION -->
-                <img id="credits" src="img/BUPT_logo.png" alt="Made by Beijing University of Posts and Telecommunications" />            
-                <!-- B VERSION (no image) -->
-</div>            
+                <div class="row">
+                                <!-- A VERSION -->
+                                <img id="credits" src="img/BUPT_logo.png" alt="Made by Beijing University of Posts and Telecommunications" />            
+                                <!-- B VERSION (no image) -->
+                </div>            
                
 </form>
 
- 
 
 <script type="text/javascript">
             
@@ -159,13 +162,12 @@
 
      
 
-// });
-       
-            
+// });          
 </script>
 
 
     </div>
+
     <footer id="footer">
         <nav>
             <ul>

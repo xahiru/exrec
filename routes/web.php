@@ -35,19 +35,19 @@ Route::get('/category','IndexController@category');
 Route::get('/choice','IndexController@choice');
 
 
-
 Route::get('/step2', function (Request $request) {
 /*
 	1. load all the movies from the ml-1M data file
 	2. pass top 1000
 	3. if user clicks load more, load next 1000
-*/
-        
+*/      
      // This is before loading the step2, username,id, and cookies has to be saved here before loading the second page       
         // $users = DB::select('select * from users where active = ?', [1]);
          $movies = Movie::orderBy('id', 'desc')->simplePaginate(30);
-         var_dump(Session::get('username'));
-    return view('step2', ['movies' => $movies]);
+         // var_dump(Session::get('username'));
+         // var_dump(Session::get('choice'));
+         $choice = Session::get('choice');
+    return view('step2', ['movies' => $movies, 'choice' => $choice]);
 });
 
 Route::get('/step3', function (Request $request) {
@@ -96,8 +96,7 @@ Route::get('/step3a', function (Request $request) {
 	$numtitem = ceil(sizeof($ids)*0.2);
 	$offset = sizeof($ids) - $numtitem;
 
-
-	 $array1 = array_slice($ids, $offset , $numtitem);
+	$array1 = array_slice($ids, $offset , $numtitem);
 	$array2 = array_slice($ids, 0, $offset);	
 	 var_dump($array1);
 	 var_dump($array2);
@@ -122,13 +121,19 @@ Route::get('/step3a', function (Request $request) {
 
 });
 
-Route::get('/step4a', function (Request $request) {
+Route::get('/star', function (Request $request) {
 	$uid = Session::get('uid');
 	$uid = $uid -1;
 
 	$ratings = Rating::where('user_id', $uid)->get();
 	// var_dump($ratings);
-	return view('step4a', ['ratings' => $ratings]);
+	// return view('step4a', ['ratings' => $ratings]);
+
+	$ids = $request->input('check_list', []);
+
+	$movies = Movie::whereIn('id', $ids)->simplePaginate(15);
+
+	return view('step4a', ['movies' => $movies, 'ratings' => $ratings]);
 
 });
 

@@ -42,6 +42,8 @@ class IndexController extends Controller
     {
       $fields = Input::get('choice');
 
+      Session::put('choice', $fields);
+
             switch ($fields ) {
             case "test":
                 echo "i is test";
@@ -53,7 +55,7 @@ class IndexController extends Controller
                 echo "certain";
                 break;
             case "star":
-                echo "i is cake";
+                return redirect('/step2');
                 break;
             case "tidal":
                 echo "i is tidal";
@@ -83,7 +85,8 @@ class IndexController extends Controller
     {
          $movies = Movie::orderBy('id', 'desc')->simplePaginate(30);
          var_dump(Session::get('username'));
-        return view('step2', ['movies' => $movies]);
+         $choice = Session::get('choice');
+        return view('step2', ['movies' => $movies, 'choice' => $choice]);
     }
 
 

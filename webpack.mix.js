@@ -1,4 +1,6 @@
 let mix = require('laravel-mix');
+// @import "~font-awesome/scss/font-awesome";
+// @import "~font-awesome/scss/font-awesome";
 
 /*
  |--------------------------------------------------------------------------
@@ -15,6 +17,8 @@ mix.less('bower_components/jquery-bar-rating/themes/fontawesome-stars.less','pub
    .less('bower_components/jquery-bar-rating/themes/bars-pill.less','public/css')
    .less('bower_components/jquery-bar-rating/themes/css-stars.less','public/css')
    .less('bower_components/jquery-bar-rating/themes/bars-square.less','public/css')
+   .copy('node_modules/font-awesome/fonts/*', 'public/fonts')
+   // .sass('resources/assets/sass/app.scss', 'public/css');
    // .copy('bower_components/jquery-bar-rating/jquery.barrating.js', 'public/js/jquery.barrating.js');
    // .copy('node_modules/vis/dist/vis.js', 'public/js/vis.js');
    .copy('node_modules/vis/dist/vis.css', 'public/css/vis.css');

@@ -34,65 +34,73 @@
             </div>
         </div>
         <div id="main">
-            <form action="step3" method="GET" class="form" name="pageForm">
-                        <input type="hidden" id="hiddenValue" name="category" value="none">
-                
-            <article>
-                <p class="center">Select movies you've watched (at least 10, more the better). You will be rating them in the next two steps.
-                    </p>
-                
-            </article>
+            @switch($choice)
+                @case('star')
 
-            @foreach($movies->chunk(3) as $chunk)
+                    <form action="/star" method="GET" class="form" name="pageForm">
+                @break
+
+                @default
+
+                <form action="step3a" method="GET" class="form" name="pageForm">
+            @endswitch
+                
+                <input type="hidden" id="hiddenValue" name="category" value="none">
+                    
+                <article>
+                    <p class="center">Select movies you've watched (at least 10, more the better). You will be rating them in the next two steps.
+                        </p>
+                </article>
+
+                @foreach($movies->chunk(3) as $chunk)
+
                 <div class="row">
-                    @foreach($chunk as $movie)
-                        <div class="col col-4">
-                            <ul class="item-list">
-                                <li><a href="javascript:submitLink('Farms')">{{ $movie->name }}</a>
-                                    <span>
-                                    <input type="checkbox" class="checkbox" name='check_list[]' id='check_list[]' value='{{$movie->id}}'/>
-                                    </span>
-                                    
-                                </li>    
-                            </ul>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
+                        @foreach($chunk as $movie)
 
+                            <div class="col col-4">
+                                <ul class="item-list">
+                                    <li><a href="javascript:submitLink('Farms')">{{ $movie->name }}</a>
+                                        <span>
+                                        <input type="checkbox" class="checkbox" name='check_list[]' id='check_list[]' value='{{$movie->id}}'/>
+                                        </span>
+                                        
+                                    </li>    
+                                </ul>
+                            </div>
+                        @endforeach
+
+                </div>
+
+                @endforeach
+
+                <div class="row">
+                  <div class="form-item" >
+                         {{ $movies->links() }}
+                        <input action="step3" method="GET" type="submit" id="continue-onward"  class="button red-primary justify-content" value="Next" />
+                    </div>
+                </div> 
+
+                <div class="row">
+                    <!-- A VERSION -->
+                    <img id="credits" src="img/BUPT_logo.png" alt="Made by Beijing University of Posts and Telecommunications" />            
+                    <!-- B VERSION (no image) -->
+                </div> 
+                   
+                </form>
         </div>
-            <div class="row">
-
-                
-
-                <div class="form-item" >
-                     {{ $movies->links() }}
-                    <input action="step3" method="GET" type="submit" id="continue-onward"  class="button red-primary justify-content" value="Next" />
-                </div>
-            </div> 
-
-            <div class="row">
-                <!-- A VERSION -->
-                <img id="credits" src="img/BUPT_logo.png" alt="Made by Beijing University of Posts and Telecommunications" />            
-                <!-- B VERSION (no image) -->
-            </div> 
-               
-</form>
 
 
-
-    </div>
-    <footer id="footer">
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li class="divider">&middot;</li>
-                <li><a href="terms.html">Terms of Service</a></li>
-                <li class="divider">&middot;</li>
-                <li><a href="contact.html">Contact us</a></li>
-            </ul>
-        </nav>
-    </footer>
+        <footer id="footer">
+            <nav>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li class="divider">&middot;</li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li class="divider">&middot;</li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </nav>
+        </footer>
     </div>
 </body>
 
