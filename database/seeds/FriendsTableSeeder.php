@@ -14,7 +14,7 @@ class FriendsTableSeeder extends Seeder
     {
         // make 10% connected
         $percent =  User::all()->count();
-        $percent =  0.05 *  $percent;
+        $percent =  0.5 *  $percent;
         for ($i=0; $i < $percent; $i++) { 
         	$u1 = User::inRandomOrder()->get()->first();
         	$u2 = User::inRandomOrder()->get()->first();
