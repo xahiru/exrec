@@ -61,8 +61,11 @@
                             <div class="special-drop"> 
                                 <div id='{{$movie->id}}'></div>
                             </div>
+
                             
                             <input class="my-text-select" type="text" id="selected-text-{{$movie->id}}" name="selected-text-{{$movie->id}}" style="width:65px;">
+
+                            <input class="my-timer" type="text" id="timer-{{$movie->id}}" name="timer-{{$movie->id}}" style="width:65px;">
                            
                         </div>
 
@@ -96,6 +99,7 @@
         var selectedText = [];
         var icons = [];
         var idList;
+        var ini_time = performance.now();
 
             icons.push({'iconFilePath':'img/1.png', 'iconValue':'1'});
             icons.push({'iconFilePath':'img/2.png', 'iconValue':'2'});
@@ -134,6 +138,12 @@
                 //     console.log("inside change"+ e.target.id);
                     selectedText = document.getElementById('selected-text-'+e.target.id);
                     // selectedText.value = e.target.id;// iconSelectItem1.getSelectedValue();
+                    var timer_text = document.getElementById('timer-'+e.target.id);
+                    var now = performance.now();
+
+                    timer_text.value = (now - ini_time)/1000;
+                    ini_time = now;  
+                                      
    
                     // selectedText.value = iconSelectItem1.getSelectedValue();
                     selectedText.value = obj[e.target.id].getSelectedValue();

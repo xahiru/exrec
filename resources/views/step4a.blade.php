@@ -74,6 +74,8 @@
                             
                             <input class="my-text-select" type="text" id="selected-text-{{$movie->id}}" name="selected-text-{{$movie->id}}" style="width:65px;">
 
+                            <input class="my-timer" type="text" id="timer-{{$movie->id}}" name="timer-{{$movie->id}}" style="width:65px;">
+
                             <div class="br-wrapper br-theme-fontawesome-stars special-drop">
                               <select id="{{$movie->id}}">
                                 <option value="1">1</option>
@@ -87,10 +89,9 @@
                         </div>
 
                         @endforeach
-                    </div>
-            @endforeach
 
-            
+                </div>
+            @endforeach
 
 
             <div class="row">
@@ -103,18 +104,43 @@
 <script type="text/javascript">
        $(function() {
 
-          $('#example').barrating({
+         idList = document.getElementsByClassName('special-drop');
+
+         var ini_time = performance.now();
+
+
+         for (var j = 0; j < idList.length; j++) {
+            var kid = idList[j].childNodes[1].id;
+             // console.log(kid);
+             $('#'+kid).barrating({
             theme: 'fontawesome-stars',
             onSelect: function(value, text, event) {
             if (typeof(event) !== 'undefined') {
               // rating was selected by a user
-              console.log(event.target);
+              // var a = performance.now();
+              var timer_text = document.getElementById('timer-'+event.target.parentElement.parentElement.childNodes[0].id);
+
+              var now = performance.now();
+
+              timer_text.value = (now - ini_time)/1000;
+              ini_time = now;
+
+               console.log(event.target.parentElement.parentElement.childNodes[0].id);
+              // console.log(text);
+              // var id = $(this).attr("id");
+              // console.log(id);
+              console.log(value);
             } else {
               // rating was selected programmatically
               // by calling `set` method
+              // var a = performance.now();
             }
           }
           });
+
+          }
+
+          
        });
 </script>
         
