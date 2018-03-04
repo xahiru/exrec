@@ -143,8 +143,6 @@
 
                     timer_text.value = (now - ini_time)/1000;
                     ini_time = now;  
-                                      
-   
                     // selectedText.value = iconSelectItem1.getSelectedValue();
                     selectedText.value = obj[e.target.id].getSelectedValue();
                      // console.log(obj[e.target.id].getSelectedValue());

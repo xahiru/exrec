@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Please provide the website a nickname">
-    <title>ExRec - sign up</title>
+    <title>ExRec - Test Insert Data</title>
 
     <link rel="stylesheet" href="css/kube.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -28,13 +28,13 @@
     <div id="wrapper">
         <div class="show-on-small">
             <div id="nav-toggle-box">
-                <div id="nav-toggle-brand"><a class="brand" href="step1.html">help me choose</a></div>
+                <div id="nav-toggle-brand"><a class="brand" href="/">help me choose</a></div>
                 <a href="#" id="nav-toggle" class="toggleme" onclick="toggleNav();"><i class="menu-icon"></i></a>
             </div>
         </div>
         <div id="header-box" class="hide-on-small" style="display: block;">
             <div id="header">
-                <div id="header-brand"><a class="brand" href="step1.html">help me choose</a></div>
+                <div id="header-brand"><a class="brand" href="/">help me choose</a></div>
                 <nav id="header-nav">
                     <ul>
                         <li><a href="about.html">About</a></li>
@@ -45,10 +45,10 @@
             </div>
         </div>
         <div id="main">
-          <form action="step4" method="GET" class="form" name="pageForm">
+          <form action="/testinsert" method="GET" class="form" name="pageForm">
                             
             <article>
-                <p class="center">Please rate the following movies.</p>
+                <p class="center">Please rate the following movies for test insertion.</p>
              </article>
     
             
@@ -93,6 +93,13 @@
                 </div>
             @endforeach
 
+            <div class="row">
+                    <div class="form-item" >
+                     {{ $movies->links() }}
+                    <input method="GET" type="submit" id="continue-onward"  class="button red-primary justify-content" value="Test insert!" />
+                    </div>
+            </div>
+
 
             <div class="row">
                 <!-- A VERSION -->
@@ -119,6 +126,7 @@
               // rating was selected by a user
               // var a = performance.now();
               var timer_text = document.getElementById('timer-'+event.target.parentElement.parentElement.childNodes[0].id);
+              var rating_text = document.getElementById('selected-text-'+event.target.parentElement.parentElement.childNodes[0].id);
 
               var now = performance.now();
 
@@ -130,6 +138,9 @@
               // var id = $(this).attr("id");
               // console.log(id);
               console.log(value);
+
+              rating_text.value = value;
+
             } else {
               // rating was selected programmatically
               // by calling `set` method

@@ -40,6 +40,11 @@
                     <form action="/star" method="GET" class="form" name="pageForm">
                 @break
 
+                @case('test')
+
+                    <form action="/test" method="GET" class="form" name="pageForm">
+                @break
+
                 @default
 
                 <form action="step3a" method="GET" class="form" name="pageForm">

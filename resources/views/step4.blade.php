@@ -15,13 +15,13 @@
     <div id="wrapper">
         <div class="show-on-small">
             <div id="nav-toggle-box">
-                <div id="nav-toggle-brand"><a class="brand" href="step1.html">help me choose</a></div>
+                <div id="nav-toggle-brand"><a class="brand" href="/">help me choose</a></div>
                 <a href="#" id="nav-toggle" class="toggleme" onclick="toggleNav();"><i class="menu-icon"></i></a>
             </div>
         </div>
         <div id="header-box" class="hide-on-small" style="display: block;">
             <div id="header">
-                <div id="header-brand"><a class="brand" href="step1.html">help me choose</a></div>
+                <div id="header-brand"><a class="brand" href="/">help me choose</a></div>
                 <nav id="header-nav">
                     <ul>
                         <li><a href="about.html">About</a></li>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col col-8">
                     <article>
-                        <h1 class="no-margin">Casa Hernanz <span class="label stars"><img src="img/stars.png" alt="score" /></span></h1>
+                        <h1 class="no-margin">Casa tHernanz <span class="label stars"><img src="img/stars.png" alt="score" /></span></h1>
                         <p><span class="desc">shoe store - Art supplies - Fabric stores</span></p>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a accumsan nibh, vel sollicitudin tortor.
@@ -60,7 +60,8 @@
                 </div>
             </section>
             <article class="review-form">
-                <form action="step2.html" method="POST" class="form" name="pageForm">
+                <form action="/slopeOne" method="POST" class="form" name="pageForm">
+                    {{ csrf_field() }}
                     <section>
                         <p class="introduction">How well do you trust our app’s ability to provide you with a good recommnedation?</p>
                     </section>

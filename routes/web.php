@@ -35,6 +35,11 @@ Route::get('/category','IndexController@category');
 Route::get('/choice','IndexController@choice');
 
 
+Route::get('/test','IndexController@test');
+Route::get('/testinsert','IndexController@testinsert');
+Route::post('/slopeOne','IndexController@slopeOne');
+
+
 Route::get('/step2', function (Request $request) {
 /*
 	1. load all the movies from the ml-1M data file
@@ -128,12 +133,11 @@ Route::get('/star', function (Request $request) {
 	$ratings = Rating::where('user_id', $uid)->get();
 	// var_dump($ratings);
 	// return view('step4a', ['ratings' => $ratings]);
-
 	$ids = $request->input('check_list', []);
 
 	$movies = Movie::whereIn('id', $ids)->simplePaginate(15);
 
-	return view('step4a', ['movies' => $movies, 'ratings' => $ratings]);
+	return view('star', ['movies' => $movies, 'ratings' => $ratings]);
 
 });
 
