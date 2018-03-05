@@ -37,7 +37,7 @@ Route::get('/choice','IndexController@choice');
 
 Route::get('/test','IndexController@test');
 Route::get('/testinsert','IndexController@testinsert');
-Route::post('/slopeOne','IndexController@slopeOne');
+Route::post('/slopeOne','IndexController@recomSlopeOne');
 
 
 Route::get('/step2', function (Request $request) {

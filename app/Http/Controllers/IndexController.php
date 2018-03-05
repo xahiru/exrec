@@ -168,14 +168,30 @@ class IndexController extends Controller
 
     }
 
-    //pass user_id and item_id
-    // public function slopeOne($uid, $iid)
-    public function slopeOne(Request $request)
+    public function recomSlopeOne(Request $request)
     {
-      $uid = 716;
-      $iid = 161336;
+      //get userId
+      $uid = Session::get('uid');
+      //use all movies
+      $movies = Movie::all();
+      //use for each movie call SlopeOnefun
 
-      $testing = 1;
+      foreach ($movies as $movie) {
+          echo $this->slopeOne( $uid,$movie->id);
+      }
+      return "hello";
+
+    }
+
+    //pass user_id and item_id
+    public function slopeOne($uid, $iid)
+    // public function slopeOne(Request $request)
+    {
+      // $uid = 716; //Lucy's id
+      // $iid = 161336; //A
+
+
+      $score = 0; //value for return
 
       //1 get the items user rated i
       //2 for each item user rated get all the ratings Ri
@@ -186,41 +202,75 @@ class IndexController extends Controller
         $i = Rating::where('user_id', $uid)->get();
         // $item_ratings = Rating::where('movie_id', $item)->rating;
         // var_dump($i);
-        var_dump($i);
+        // var_dump($i
+        // );
 
 
-        $diffList = [];
+        $totalCount = 0;
+        $totalNumerator = 0;
         $weightList = [];
 
-        foreach ($i as $rated => $movie_id) {
+        foreach ($i as $rated) {
+          $diffList = [];
 
-          var_dump($rated);
+          // var_dump($rated->movie_id);
+          // var_dump($rated->ratings);
+          $nonEveragedRating = $rated->ratings;
+          $average = 0;
 
-        //   $colRating = Rating::where('movie_id', $movie_id)->get();
 
-        //   if($movie_id != $iid){
+          $colRating = Rating::where('movie_id', $rated->movie_id)->get();
 
-        //     foreach ($colRating as $ratings => $user_id) {
-        //       //get user_id rating for this item
-        //       $R1 = $ratings->ratings;
-        //       $R2 = Rating::where('user_id', $user_id)->where('movie_id', $iid)->rating;
-        //       if ($R2) {
-        //         $diff = $R1 - $R2;
-        //         array_push($diffList, $diff);
-        //       }
+          // var_dump($colRating);
 
-        //   }
+          if($rated->movie_id != $iid){
+
+            foreach ($colRating as $ratings) {
+
+              // if (($ratings->user_id == 715) || ($ratings->user_id == 714) ) {
+                // var_dump($ratings->user_id);
+                //get user_id rating for this item
+                $R1 = $ratings->ratings;
+                $R2 = Rating::where('user_id', $ratings->user_id)->where('movie_id', $iid)->first();
+                if ($R2) {
+                  // var_dump($R2->user_id);
+                  // var_dump($R2->ratings);
+                  // var_dump($ratings->ratings);
+                  // var_dump($ratings->user_id);
+                  $diff = $R2->ratings -$R1;
+                  // var_dump($diff);
+                  array_push($diffList, $diff);
+                }
+              }
+
+          // }
+          // var_dump($diffList);
         //     // $a = array_filter($a);
-        //     $average = array_sum($diffList)/count($diffList);
-        //     array_push($weightList, ['weight' => $average,'count(var)' => count($diffList)]);
-        // }
+            $count = count($diffList);
+            if ($count > 0) {
+              $average = array_sum($diffList)/$count;
+            }
+            
+            
+            $weight =  $nonEveragedRating + $average;
+            $Weightedrating = $weight * $count ;
+            // var_dump($Weightedrating);
+            // array_push($weightList, ['weight' => $average,'count(var)' => count($diffList)]);
+
+            $totalCount = $totalCount + $count;
+            $totalNumerator = $totalNumerator + $Weightedrating;
+
         }
+          if ($totalCount > 0) {
+            $score =($totalNumerator/$totalCount);
+          }
+          
 
-        return 'heelloo';
+          // var_dump($score);
+          // return $score;
 
-
-
-
-
+        }
+        return ($score);
+       
     }
 }
